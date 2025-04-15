@@ -85,7 +85,12 @@
                     <span class="{{ $todo['completed'] ? 'completed' : '' }}">
                         {{ $todo['task'] }}
                     </span>
-                    
+                    <div class="actions">
+                        <form action="{{ route('todo.toggle', $index) }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="submit" class="toggle">{{ $todo['completed'] ? 'Undo' : 'Complete' }}</button>
+                        </form>                        
+                    </div>
                 </li>
             @empty
                 <li>No tasks yet!</li>

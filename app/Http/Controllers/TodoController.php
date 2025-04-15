@@ -28,4 +28,16 @@ class TodoController extends Controller
 
         return redirect()->route('todo.index');
     }
+
+    public function toggle(Request $request, $index)
+    {
+        $todos = session('todos', []);
+
+        if (isset($todos[$index])) {
+            $todos[$index]['completed'] = !$todos[$index]['completed'];
+            session(['todos' => $todos]);
+        }
+
+        return redirect()->route('todo.index');
+    }
 }
