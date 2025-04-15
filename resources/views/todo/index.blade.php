@@ -73,7 +73,24 @@
     <div class="container">
         <h1>My To-Do List</h1>
 
-        
+        <form action="{{ route('todo.add') }}" method="POST">
+            @csrf
+            <input type="text" name="task" placeholder="Add new task" required>
+            <button type="submit">Add</button>
+        </form>
+
+        <ul>
+            @forelse ($todos as $index => $todo)
+                <li>
+                    <span class="{{ $todo['completed'] ? 'completed' : '' }}">
+                        {{ $todo['task'] }}
+                    </span>
+                    
+                </li>
+            @empty
+                <li>No tasks yet!</li>
+            @endforelse
+        </ul>
     </div>
 </body>
 </html>

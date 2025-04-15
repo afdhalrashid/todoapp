@@ -12,5 +12,20 @@ class TodoController extends Controller
         return view('todo.index', compact('todos'));
     }
 
-   
+    public function add(Request $request)
+    {
+        $request->validate([
+            'task' => 'required|string|max:255',
+        ]);
+
+        $task = $request->input('task');
+        $todos = session('todos', []);
+
+        // Add the new task to the beginning of the array
+        array_unshift($todos, ['task' => $task, 'completed' => false]);
+
+        session(['todos' => $todos]);
+
+        return redirect()->route('todo.index');
+    }
 }

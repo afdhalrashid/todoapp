@@ -8,3 +8,4 @@ Route::get('/', function () {
 });
 
 Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+Route::post('/add', [TodoController::class, 'add'])->name('todo.add');
