@@ -78,7 +78,10 @@
             <input type="text" name="task" placeholder="Add new task" required>
             <button type="submit">Add</button>
         </form>
-       
+        <form action="{{ route('todo.reset') }}" method="POST">
+            @csrf
+            <button type="submit" style=" border-radius: 5px 5px 5px 5px; background-color: brown;">Reset</button>
+        </form>
 
         <ul>
             @forelse ($todos as $index => $todo)

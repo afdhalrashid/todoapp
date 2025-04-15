@@ -54,4 +54,11 @@ class TodoController extends Controller
 
         return redirect()->route('todo.index');
     }
+
+    public function reset(Request $request){
+        $request->session()->forget('todos');
+        $todos = session('todos', []);
+        return view('todo.index', compact('todos'));
+    }
+
 }
