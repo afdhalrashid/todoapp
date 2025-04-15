@@ -78,6 +78,7 @@
             <input type="text" name="task" placeholder="Add new task" required>
             <button type="submit">Add</button>
         </form>
+       
 
         <ul>
             @forelse ($todos as $index => $todo)
@@ -89,6 +90,11 @@
                         <form action="{{ route('todo.toggle', $index) }}" method="POST" style="display:inline;">
                             @csrf
                             <button type="submit" class="toggle">{{ $todo['completed'] ? 'Undo' : 'Complete' }}</button>
+                        </form>
+                        <form action="{{ route('todo.delete', $index) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="delete">Delete</button>
                         </form>                        
                     </div>
                 </li>

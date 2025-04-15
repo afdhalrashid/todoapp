@@ -40,4 +40,18 @@ class TodoController extends Controller
 
         return redirect()->route('todo.index');
     }
+
+    public function delete(Request $request, $index)
+    {
+        $todos = session('todos', []);
+
+        if (isset($todos[$index])) {
+            unset($todos[$index]);
+            // Re-index the array to avoid issues with keys
+            $todos = array_values($todos);
+            session(['todos' => $todos]);
+        }
+
+        return redirect()->route('todo.index');
+    }
 }
